@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b0d10;
+  --color-ink-2: #1a1e24;
+  --color-muted: #6b7280;
+  --color-line: #e5e7eb;
+  --color-accent: #1d4ed8;
+  --color-paper: #ffffff;
+  --color-wash: #f7f8fa;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.grid-bg {
+  background-image: linear-gradient(
+      to right,
+      rgba(11, 13, 16, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(11, 13, 16, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
