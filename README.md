@@ -3,7 +3,7 @@
 Personal portfolio site for a propulsion / CFD engineering graduate.
 Single-page layout with anchor navigation, built with Next.js and deployed on Vercel.
 
-**Live:** https://portfolio-psi-two-5o5rihl2zd.vercel.app
+**Live:** https://vinaykumar-venkateshkumar.vercel.app
 
 ## Stack
 
