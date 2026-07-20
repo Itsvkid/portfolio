@@ -6,6 +6,7 @@ import {
   education,
   certifications,
 } from "./data";
+import ContactForm from "./ContactForm";
 
 const NAV = [
   { href: "#projects", label: "Projects" },
@@ -337,6 +338,13 @@ export default function Home() {
                 </p>
               </a>
             ))}
+          </div>
+
+          <div className="mt-10">
+            <h3 className="mb-5 font-mono text-xs uppercase tracking-widest text-accent">
+              Send a message
+            </h3>
+            <ContactForm email={profile.email} />
           </div>
 
           <a

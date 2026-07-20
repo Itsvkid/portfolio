@@ -29,6 +29,20 @@ Content lives in `app/data.js` as plain exported objects — profile, skills,
 projects, experience, education, certifications. Updating the site means
 editing that one file; `page.js` maps over it.
 
+## Contact form
+
+The contact form posts to [Web3Forms](https://web3forms.com). It reads a single
+environment variable:
+
+```
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-access-key
+```
+
+If the variable is unset, the form is not rendered at all — the contact section
+falls back to a plain mailto link, so the site never shows a form that silently
+fails. Set the key in Vercel under Settings → Environment Variables, and locally
+in `.env.local`.
+
 ## Development
 
 ```bash
