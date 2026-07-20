@@ -3,7 +3,9 @@
 Personal portfolio site for a propulsion / CFD engineering graduate.
 Single-page layout with anchor navigation, built with Next.js and deployed on Vercel.
 
-**Live:** https://vinaykumar-venkateshkumar.vercel.app
+**Live:** https://vinaykumar.is-a.dev
+
+Also reachable at https://vinaykumar-venkateshkumar.vercel.app (Vercel alias).
 
 ## Stack
 
@@ -21,8 +23,12 @@ app/
   globals.css  # theme tokens + Tailwind import
 public/
   Vinaykumar_Venkateshkumar_CV.pdf
+  headshot.jpg            # 640x640 square crop used in the hero
+headshot.jpg              # original portrait, kept as the crop source
 Documents/
   Vinaykumar_Resume.pdf   # source resume the content was parsed from
+docs/
+  preview.png             # site screenshot (referenced by the is-a.dev PR)
 ```
 
 Content lives in `app/data.js` as plain exported objects — profile, skills,
@@ -55,3 +61,10 @@ npm run build    # production build
 
 Connected to Vercel with `main` as the production branch — pushes to `main`
 deploy automatically. Pull requests get preview deployments.
+
+The `vinaykumar.is-a.dev` domain is registered through the free
+[is-a.dev](https://is-a.dev) registry. Its DNS records live in
+[is-a-dev/register](https://github.com/is-a-dev/register): a `CNAME` in
+`domains/vinaykumar.json` pointing at Vercel, plus a `TXT` challenge in
+`domains/_vercel.vinaykumar.json` for Vercel's domain verification. Changing
+where the domain points means opening a pull request against that repository.
