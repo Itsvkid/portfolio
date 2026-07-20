@@ -6,6 +6,7 @@ import {
   education,
   certifications,
 } from "./data";
+import Image from "next/image";
 import ContactForm from "./ContactForm";
 
 const NAV = [
@@ -77,38 +78,54 @@ export default function Home() {
         {/* Hero */}
         <section className="grid-bg border-b border-line">
           <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-              {profile.role}
-            </p>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
-              {profile.name}
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-2 sm:text-lg">
-              {profile.tagline}
-            </p>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">
-              {profile.seeking}
-            </p>
+            <div className="flex flex-col-reverse items-start gap-12 md:flex-row md:items-center md:justify-between md:gap-16">
+              <div className="w-full min-w-0 flex-1">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                  {profile.role}
+                </p>
+                <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
+                  {profile.name}
+                </h1>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-2 sm:text-lg">
+                  {profile.tagline}
+                </p>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">
+                  {profile.seeking}
+                </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
-              <span>📍 {profile.location}</span>
-              <span className="hidden sm:inline text-line">|</span>
-              <span>{profile.workAuth}</span>
-            </div>
+                <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+                  <span>📍 {profile.location}</span>
+                  <span className="hidden sm:inline text-line">|</span>
+                  <span>{profile.workAuth}</span>
+                </div>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-opacity hover:opacity-85"
-              >
-                View projects
-              </a>
-              <a
-                href={`mailto:${profile.email}`}
-                className="rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:bg-wash"
-              >
-                Get in touch
-              </a>
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <a
+                    href="#projects"
+                    className="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-opacity hover:opacity-85"
+                  >
+                    View projects
+                  </a>
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:bg-wash"
+                  >
+                    Get in touch
+                  </a>
+                </div>
+              </div>
+
+              <div className="shrink-0">
+                <Image
+                  src="/headshot.jpg"
+                  alt={`Portrait of ${profile.name}`}
+                  width={640}
+                  height={640}
+                  priority
+                  sizes="(max-width: 768px) 144px, 240px"
+                  className="h-36 w-36 rounded-2xl border border-line object-cover shadow-sm md:h-60 md:w-60"
+                />
+              </div>
             </div>
           </div>
         </section>
