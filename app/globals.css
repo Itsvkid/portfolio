@@ -1,32 +1,198 @@
 @import "tailwindcss";
 
+/* ── Scheme tokens ──────────────────────────────────────────────────────────
+   Dark is the design target; light flips purely on prefers-color-scheme.
+   All text/background pairs verified ≥ 4.5:1 (see docs/DESIGN_SPEC.md §3.1). */
+
+:root {
+  color-scheme: dark;
+  --bg0: #0a0c0e; /* page background */
+  --bg1: #101316; /* raised surface: inputs, nav fill */
+  --line: #23282e; /* all rules and borders */
+  --fg0: #edeef0; /* headings, primary text */
+  --fg1: #a8afb8; /* body, secondary text */
+  --fg2: #788087; /* faint: meta, footer, placeholders */
+  --accent: #ff6d3b; /* test-flight orange */
+  --accent-hover: #ff8a5e;
+  --accent-active: #f05a26;
+
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --ease: cubic-bezier(0.3, 0, 0.4, 1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg0: #fbfbfa;
+    --bg1: #f3f3f1;
+    --line: #e3e3df;
+    --fg0: #17191c;
+    --fg1: #4a5057;
+    --fg2: #686e75;
+    --accent: #bc3c0a;
+    --accent-hover: #9e3208;
+    --accent-active: #8a2b06;
+  }
+}
+
 @theme {
-  --color-ink: #0b0d10;
-  --color-ink-2: #1a1e24;
-  --color-muted: #6b7280;
-  --color-line: #e5e7eb;
-  --color-accent: #1d4ed8;
-  --color-paper: #ffffff;
-  --color-wash: #f7f8fa;
+  --color-bg0: var(--bg0);
+  --color-bg1: var(--bg1);
+  --color-line: var(--line);
+  --color-fg0: var(--fg0);
+  --color-fg1: var(--fg1);
+  --color-fg2: var(--fg2);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+  /* one easing for every transition, including Tailwind's own utilities */
+  --default-transition-timing-function: var(--ease);
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--bg0);
+    color: var(--fg1);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg0);
+  }
 }
 
-body {
-  background: var(--color-paper);
-  color: var(--color-ink);
-  -webkit-font-smoothing: antialiased;
+/* ── Type scale ─────────────────────────────────────────────────────────────
+   Hierarchy is typographic, never boxed. h3 (project titles) is deliberately
+   larger than h2 (section titles) — projects are the evidence. */
+
+@layer components {
+  .t-display {
+    font-size: clamp(2.5rem, 1.2rem + 5.5vw, 4.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+  }
+
+  .t-h2 {
+    font-size: 1.375rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .t-h3 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
+  .t-h4 {
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  .t-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .t-body-sm {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .t-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .t-meta {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+  }
+
+  /* Text link: 1px rule that warms to accent on hover. */
+  .link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--line);
+    transition: text-decoration-color var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease);
+  }
+
+  .link:hover {
+    text-decoration-color: var(--accent);
+  }
 }
 
-.grid-bg {
-  background-image: linear-gradient(
-      to right,
-      rgba(11, 13, 16, 0.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(11, 13, 16, 0.045) 1px, transparent 1px);
-  background-size: 44px 44px;
+/* ── Reveal ─────────────────────────────────────────────────────────────────
+   The hidden initial state is gated on `.js`, which is set by an inline script
+   before first paint. No-JS visitors therefore see everything, and there is no
+   flash of visible-then-hidden content. */
+
+.reveal {
+  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

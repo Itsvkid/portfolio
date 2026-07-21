@@ -1,12 +1,13 @@
 export const profile = {
   name: "Vinaykumar Venkateshkumar",
   role: "Propulsion / CFD Engineer",
+  kicker: "Propulsion / CFD — Cranfield University",
   tagline:
-    "Propulsion and CFD engineering graduate with hands-on ANSYS Fluent simulation experience from a validated jet-mixing study, and ongoing parametric CAD work on a nacelle-installation research project.",
-  location: "Cranfield, United Kingdom",
-  workAuth: "Work authorization: sponsorship required",
-  seeking:
-    "Seeking an entry-level propulsion, CFD, or aircraft design role.",
+    "CFD and propulsion engineer working on nacelle installation aerodynamics — ANSYS Fluent simulation, parametric CAD, and a validated jet-mixing study.",
+  location: "Cranfield, UK",
+  workAuth: "Sponsorship required",
+  availability: "Available Sep 2026",
+  seeking: "Entry-level propulsion / CFD / aircraft design",
   email: "kumarvsvinay@gmail.com",
   phone: "+44 7742 914241",
   linkedin: "https://linkedin.com/in/vinaykumar-venkateshkumar",
@@ -26,20 +27,20 @@ export const skills = [
     ],
   },
   {
-    group: "CAD",
+    group: "CAD & Geometry",
     items: [
-      "CATIA V5 (Proficient)",
+      "CATIA V5",
       "ANSYS DesignModeler",
       "pyOCC / OpenCASCADE",
       "Parametric geometry (iCST)",
     ],
   },
   {
-    group: "Programming & Analysis",
+    group: "Programming",
     items: ["Python", "MATLAB"],
   },
   {
-    group: "Engineering Domains",
+    group: "Domains",
     items: [
       "Propulsion",
       "Aerodynamics",
@@ -56,7 +57,6 @@ export const projects = [
     title: "Installation Aerodynamics of Aero-Engine Nacelles",
     context: "Cranfield Individual Research Project",
     period: "Ongoing — expected Sep 2026",
-    tags: ["Propulsion Integration", "Parametric CAD", "Python"],
     points: [
       "Investigating installation aerodynamics using a Python-based propulsion-integration tool, applying iCST parametric geometry to model nacelle installation effects.",
       "Developing and benchmarking a pyOCC / OpenCASCADE geometry-generation workflow against commercial CAD output for accuracy and robustness.",
@@ -67,7 +67,11 @@ export const projects = [
     title: "Investigation of Controlled Jets for Enhanced Mixing Rates",
     context: "BEng Final Year Project — team of 3",
     period: "Mar 2025",
-    tags: ["CFD", "Jet Aerodynamics", "Experimental Validation"],
+    stats: [
+      { value: "64–76%", label: "Core-length reduction" },
+      { value: "M 0.6–1.0", label: "Validated range" },
+      { value: "3.4M+", label: "Mesh nodes" },
+    ],
     points: [
       "Investigated passive flow-control tab geometries (Delta Tandem Tab, M Delta Tandem Tab) to enhance nozzle jet mixing.",
       "Ran ANSYS Fluent CFD simulations across Mach 0.6–1.0 with grid-independence studies to 3.4M+ nodes, validated against experimental shadowgraph imaging.",
@@ -80,7 +84,7 @@ export const projects = [
 export const experience = [
   {
     org: "AI Engineering Services Limited (AIESL)",
-    sub: "Boeing 737 MRO Base",
+    sub: "Boeing 737 MRO Base — Air India Express",
     role: "Engineering Intern, Aircraft Maintenance",
     location: "Thiruvananthapuram, India",
     period: "Mar 2025 — Apr 2025",
@@ -98,18 +102,19 @@ export const education = [
     location: "Cranfield, UK",
     degree: "Thermal Power and Propulsion — Postgraduate Coursework",
     period: "Oct 2025 — Sep 2026",
+    current: true,
     modules: [
       "Gas Turbine Performance",
       "Combustion",
       "Turbomachinery Aerodynamics",
       "Propulsion System Design",
     ],
-    note: "Research project (ongoing): Installation aerodynamics of aero-engine nacelles",
+    note: "Installation aerodynamics of aero-engine nacelles (ongoing)",
   },
   {
     school: "KCG College of Technology, Anna University",
     location: "Chennai, India",
-    degree: "BEng — Aeronautical Engineering · CGPA 7.37/10",
+    degree: "BEng Aeronautical Engineering — CGPA 7.37/10",
     period: "2021 — 2025",
     modules: [
       "Air Breathing Propulsion",
@@ -128,14 +133,8 @@ export const education = [
 
 export const certifications = [
   {
-    title: "IELTS Academic — Overall Band 6.5",
-    detail:
-      "Listening 7.0, Reading 6.5, Writing 6.5, Speaking 5.5; UKVI B2",
-    year: "Jan 2025",
-  },
-  {
-    title: "CATIA V5 (Proficient)",
-    detail: "CADD Centre Training Services — 80 hrs",
+    title: "CATIA V5",
+    detail: "CADD Centre Training Services, 80 hrs",
     year: "2024",
   },
   {
